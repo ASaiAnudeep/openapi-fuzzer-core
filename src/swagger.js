@@ -9,7 +9,26 @@ class Swagger {
   }
 
   fuzz() {
+    this.fuzzPaths();
     this.fuzzPathMethods();
+  }
+
+  fuzzPaths() {
+    HTTP_METHODS.forEach(method => {
+      this.requests.push({
+        method,
+        path: '/ROOT/INVALID/PATH'
+      });
+    });
+    for (const route of Object.keys(this.data.paths)) {
+      const path = this.data.paths[route];
+      for (const method of Object.keys(path)) {
+        this.requests.push({
+          method,
+          path: `${this.basePath}${route}/INVALID/PATH`
+        });
+      }
+    }
   }
 
   fuzzPathMethods() {
