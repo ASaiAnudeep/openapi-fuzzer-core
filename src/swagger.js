@@ -5,7 +5,7 @@ class Swagger {
   constructor(data) {
     this.data = data;
     this.basePath = data.basePath;
-    this.requests = [];
+    this.specs = [];
   }
 
   fuzz() {
@@ -15,17 +15,29 @@ class Swagger {
 
   fuzzPaths() {
     HTTP_METHODS.forEach(method => {
-      this.requests.push({
-        method,
-        path: '/ROOT/INVALID/PATH'
+      this.specs.push({
+        name: 'INVALID_PATH',
+        request: {
+          method,
+          path: '/ROOT/INVALID/PATH'
+        },
+        expect: {
+          status: [ 404 ]
+        }
       });
     });
     for (const route of Object.keys(this.data.paths)) {
       const path = this.data.paths[route];
       for (const method of Object.keys(path)) {
-        this.requests.push({
-          method,
-          path: `${this.basePath}${route}/INVALID/PATH`
+        this.specs.push({
+          name: 'INVALID_PATH',
+          request: {
+            method,
+            path: `${this.basePath}${route}/INVALID/PATH`
+          },
+          expect: {
+            status: [ 404 ]
+          }
         });
       }
     }
@@ -36,9 +48,15 @@ class Swagger {
       const path = this.data.paths[route];
       HTTP_METHODS.forEach(method => {
         if (!path[method]) {
-          this.requests.push({
-            method,
-            path: `${this.basePath}${route}`
+          this.specs.push({
+            name: 'INVALID_METHOD',
+            request: {
+              method,
+              path: `${this.basePath}${route}`
+            },
+            expect: {
+              status: [ 405 ]
+            }
           });
         }
       });

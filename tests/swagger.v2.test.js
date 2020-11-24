@@ -5,114 +5,314 @@ const Swagger = require('../src/swagger');
 
 test('swagger - fuzz', () => {
   const data = require('./data/swagger-pet-store-v2.json');
-  const requests = fuzz.swagger(data);
-  assert.equal(requests.length, 75);
+  const specs = fuzz.swagger(data);
+  assert.equal(specs.length, 75);
 });
 
 test('swagger - fuzzPaths', () => {
   const data = require('./data/swagger-pet-store-v2.json');
   const swagger = new Swagger(data);
   swagger.fuzzPaths();
-  assert.equal(swagger.requests, [
+  assert.equal(swagger.specs, [
     {
-      "method": "get",
-      "path": "/ROOT/INVALID/PATH"
+      "name": "INVALID_PATH",
+      "request": {
+        "method": "get",
+        "path": "/ROOT/INVALID/PATH"
+      },
+      "expect": {
+        "status": [
+          404
+        ]
+      }
     },
     {
-      "method": "post",
-      "path": "/ROOT/INVALID/PATH"
+      "name": "INVALID_PATH",
+      "request": {
+        "method": "post",
+        "path": "/ROOT/INVALID/PATH"
+      },
+      "expect": {
+        "status": [
+          404
+        ]
+      }
     },
     {
-      "method": "put",
-      "path": "/ROOT/INVALID/PATH"
+      "name": "INVALID_PATH",
+      "request": {
+        "method": "put",
+        "path": "/ROOT/INVALID/PATH"
+      },
+      "expect": {
+        "status": [
+          404
+        ]
+      }
     },
     {
-      "method": "patch",
-      "path": "/ROOT/INVALID/PATH"
+      "name": "INVALID_PATH",
+      "request": {
+        "method": "patch",
+        "path": "/ROOT/INVALID/PATH"
+      },
+      "expect": {
+        "status": [
+          404
+        ]
+      }
     },
     {
-      "method": "delete",
-      "path": "/ROOT/INVALID/PATH"
+      "name": "INVALID_PATH",
+      "request": {
+        "method": "delete",
+        "path": "/ROOT/INVALID/PATH"
+      },
+      "expect": {
+        "status": [
+          404
+        ]
+      }
     },
     {
-      "method": "post",
-      "path": "/v2/pet/{petId}/uploadImage/INVALID/PATH"
+      "name": "INVALID_PATH",
+      "request": {
+        "method": "post",
+        "path": "/v2/pet/{petId}/uploadImage/INVALID/PATH"
+      },
+      "expect": {
+        "status": [
+          404
+        ]
+      }
     },
     {
-      "method": "post",
-      "path": "/v2/pet/INVALID/PATH"
+      "name": "INVALID_PATH",
+      "request": {
+        "method": "post",
+        "path": "/v2/pet/INVALID/PATH"
+      },
+      "expect": {
+        "status": [
+          404
+        ]
+      }
     },
     {
-      "method": "put",
-      "path": "/v2/pet/INVALID/PATH"
+      "name": "INVALID_PATH",
+      "request": {
+        "method": "put",
+        "path": "/v2/pet/INVALID/PATH"
+      },
+      "expect": {
+        "status": [
+          404
+        ]
+      }
     },
     {
-      "method": "get",
-      "path": "/v2/pet/findByStatus/INVALID/PATH"
+      "name": "INVALID_PATH",
+      "request": {
+        "method": "get",
+        "path": "/v2/pet/findByStatus/INVALID/PATH"
+      },
+      "expect": {
+        "status": [
+          404
+        ]
+      }
     },
     {
-      "method": "get",
-      "path": "/v2/pet/findByTags/INVALID/PATH"
+      "name": "INVALID_PATH",
+      "request": {
+        "method": "get",
+        "path": "/v2/pet/findByTags/INVALID/PATH"
+      },
+      "expect": {
+        "status": [
+          404
+        ]
+      }
     },
     {
-      "method": "get",
-      "path": "/v2/pet/{petId}/INVALID/PATH"
+      "name": "INVALID_PATH",
+      "request": {
+        "method": "get",
+        "path": "/v2/pet/{petId}/INVALID/PATH"
+      },
+      "expect": {
+        "status": [
+          404
+        ]
+      }
     },
     {
-      "method": "post",
-      "path": "/v2/pet/{petId}/INVALID/PATH"
+      "name": "INVALID_PATH",
+      "request": {
+        "method": "post",
+        "path": "/v2/pet/{petId}/INVALID/PATH"
+      },
+      "expect": {
+        "status": [
+          404
+        ]
+      }
     },
     {
-      "method": "delete",
-      "path": "/v2/pet/{petId}/INVALID/PATH"
+      "name": "INVALID_PATH",
+      "request": {
+        "method": "delete",
+        "path": "/v2/pet/{petId}/INVALID/PATH"
+      },
+      "expect": {
+        "status": [
+          404
+        ]
+      }
     },
     {
-      "method": "post",
-      "path": "/v2/store/order/INVALID/PATH"
+      "name": "INVALID_PATH",
+      "request": {
+        "method": "post",
+        "path": "/v2/store/order/INVALID/PATH"
+      },
+      "expect": {
+        "status": [
+          404
+        ]
+      }
     },
     {
-      "method": "get",
-      "path": "/v2/store/order/{orderId}/INVALID/PATH"
+      "name": "INVALID_PATH",
+      "request": {
+        "method": "get",
+        "path": "/v2/store/order/{orderId}/INVALID/PATH"
+      },
+      "expect": {
+        "status": [
+          404
+        ]
+      }
     },
     {
-      "method": "delete",
-      "path": "/v2/store/order/{orderId}/INVALID/PATH"
+      "name": "INVALID_PATH",
+      "request": {
+        "method": "delete",
+        "path": "/v2/store/order/{orderId}/INVALID/PATH"
+      },
+      "expect": {
+        "status": [
+          404
+        ]
+      }
     },
     {
-      "method": "get",
-      "path": "/v2/store/inventory/INVALID/PATH"
+      "name": "INVALID_PATH",
+      "request": {
+        "method": "get",
+        "path": "/v2/store/inventory/INVALID/PATH"
+      },
+      "expect": {
+        "status": [
+          404
+        ]
+      }
     },
     {
-      "method": "post",
-      "path": "/v2/user/createWithArray/INVALID/PATH"
+      "name": "INVALID_PATH",
+      "request": {
+        "method": "post",
+        "path": "/v2/user/createWithArray/INVALID/PATH"
+      },
+      "expect": {
+        "status": [
+          404
+        ]
+      }
     },
     {
-      "method": "post",
-      "path": "/v2/user/createWithList/INVALID/PATH"
+      "name": "INVALID_PATH",
+      "request": {
+        "method": "post",
+        "path": "/v2/user/createWithList/INVALID/PATH"
+      },
+      "expect": {
+        "status": [
+          404
+        ]
+      }
     },
     {
-      "method": "get",
-      "path": "/v2/user/{username}/INVALID/PATH"
+      "name": "INVALID_PATH",
+      "request": {
+        "method": "get",
+        "path": "/v2/user/{username}/INVALID/PATH"
+      },
+      "expect": {
+        "status": [
+          404
+        ]
+      }
     },
     {
-      "method": "put",
-      "path": "/v2/user/{username}/INVALID/PATH"
+      "name": "INVALID_PATH",
+      "request": {
+        "method": "put",
+        "path": "/v2/user/{username}/INVALID/PATH"
+      },
+      "expect": {
+        "status": [
+          404
+        ]
+      }
     },
     {
-      "method": "delete",
-      "path": "/v2/user/{username}/INVALID/PATH"
+      "name": "INVALID_PATH",
+      "request": {
+        "method": "delete",
+        "path": "/v2/user/{username}/INVALID/PATH"
+      },
+      "expect": {
+        "status": [
+          404
+        ]
+      }
     },
     {
-      "method": "get",
-      "path": "/v2/user/login/INVALID/PATH"
+      "name": "INVALID_PATH",
+      "request": {
+        "method": "get",
+        "path": "/v2/user/login/INVALID/PATH"
+      },
+      "expect": {
+        "status": [
+          404
+        ]
+      }
     },
     {
-      "method": "get",
-      "path": "/v2/user/logout/INVALID/PATH"
+      "name": "INVALID_PATH",
+      "request": {
+        "method": "get",
+        "path": "/v2/user/logout/INVALID/PATH"
+      },
+      "expect": {
+        "status": [
+          404
+        ]
+      }
     },
     {
-      "method": "post",
-      "path": "/v2/user/INVALID/PATH"
+      "name": "INVALID_PATH",
+      "request": {
+        "method": "post",
+        "path": "/v2/user/INVALID/PATH"
+      },
+      "expect": {
+        "status": [
+          404
+        ]
+      }
     }
   ]);
 });
@@ -121,206 +321,606 @@ test('swagger - fuzzPathMethods', () => {
   const data = require('./data/swagger-pet-store-v2.json');
   const swagger = new Swagger(data);
   swagger.fuzzPathMethods();
-  assert.equal(swagger.requests, [
+  assert.equal(swagger.specs, [
     {
-      "method": "get",
-      "path": "/v2/pet/{petId}/uploadImage"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "get",
+        "path": "/v2/pet/{petId}/uploadImage"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "put",
-      "path": "/v2/pet/{petId}/uploadImage"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "put",
+        "path": "/v2/pet/{petId}/uploadImage"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "patch",
-      "path": "/v2/pet/{petId}/uploadImage"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "patch",
+        "path": "/v2/pet/{petId}/uploadImage"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "delete",
-      "path": "/v2/pet/{petId}/uploadImage"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "delete",
+        "path": "/v2/pet/{petId}/uploadImage"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "get",
-      "path": "/v2/pet"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "get",
+        "path": "/v2/pet"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "patch",
-      "path": "/v2/pet"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "patch",
+        "path": "/v2/pet"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "delete",
-      "path": "/v2/pet"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "delete",
+        "path": "/v2/pet"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "post",
-      "path": "/v2/pet/findByStatus"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "post",
+        "path": "/v2/pet/findByStatus"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "put",
-      "path": "/v2/pet/findByStatus"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "put",
+        "path": "/v2/pet/findByStatus"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "patch",
-      "path": "/v2/pet/findByStatus"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "patch",
+        "path": "/v2/pet/findByStatus"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "delete",
-      "path": "/v2/pet/findByStatus"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "delete",
+        "path": "/v2/pet/findByStatus"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "post",
-      "path": "/v2/pet/findByTags"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "post",
+        "path": "/v2/pet/findByTags"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "put",
-      "path": "/v2/pet/findByTags"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "put",
+        "path": "/v2/pet/findByTags"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "patch",
-      "path": "/v2/pet/findByTags"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "patch",
+        "path": "/v2/pet/findByTags"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "delete",
-      "path": "/v2/pet/findByTags"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "delete",
+        "path": "/v2/pet/findByTags"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "put",
-      "path": "/v2/pet/{petId}"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "put",
+        "path": "/v2/pet/{petId}"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "patch",
-      "path": "/v2/pet/{petId}"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "patch",
+        "path": "/v2/pet/{petId}"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "get",
-      "path": "/v2/store/order"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "get",
+        "path": "/v2/store/order"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "put",
-      "path": "/v2/store/order"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "put",
+        "path": "/v2/store/order"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "patch",
-      "path": "/v2/store/order"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "patch",
+        "path": "/v2/store/order"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "delete",
-      "path": "/v2/store/order"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "delete",
+        "path": "/v2/store/order"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "post",
-      "path": "/v2/store/order/{orderId}"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "post",
+        "path": "/v2/store/order/{orderId}"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "put",
-      "path": "/v2/store/order/{orderId}"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "put",
+        "path": "/v2/store/order/{orderId}"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "patch",
-      "path": "/v2/store/order/{orderId}"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "patch",
+        "path": "/v2/store/order/{orderId}"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "post",
-      "path": "/v2/store/inventory"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "post",
+        "path": "/v2/store/inventory"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "put",
-      "path": "/v2/store/inventory"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "put",
+        "path": "/v2/store/inventory"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "patch",
-      "path": "/v2/store/inventory"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "patch",
+        "path": "/v2/store/inventory"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "delete",
-      "path": "/v2/store/inventory"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "delete",
+        "path": "/v2/store/inventory"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "get",
-      "path": "/v2/user/createWithArray"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "get",
+        "path": "/v2/user/createWithArray"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "put",
-      "path": "/v2/user/createWithArray"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "put",
+        "path": "/v2/user/createWithArray"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "patch",
-      "path": "/v2/user/createWithArray"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "patch",
+        "path": "/v2/user/createWithArray"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "delete",
-      "path": "/v2/user/createWithArray"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "delete",
+        "path": "/v2/user/createWithArray"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "get",
-      "path": "/v2/user/createWithList"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "get",
+        "path": "/v2/user/createWithList"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "put",
-      "path": "/v2/user/createWithList"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "put",
+        "path": "/v2/user/createWithList"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "patch",
-      "path": "/v2/user/createWithList"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "patch",
+        "path": "/v2/user/createWithList"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "delete",
-      "path": "/v2/user/createWithList"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "delete",
+        "path": "/v2/user/createWithList"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "post",
-      "path": "/v2/user/{username}"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "post",
+        "path": "/v2/user/{username}"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "patch",
-      "path": "/v2/user/{username}"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "patch",
+        "path": "/v2/user/{username}"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "post",
-      "path": "/v2/user/login"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "post",
+        "path": "/v2/user/login"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "put",
-      "path": "/v2/user/login"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "put",
+        "path": "/v2/user/login"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "patch",
-      "path": "/v2/user/login"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "patch",
+        "path": "/v2/user/login"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "delete",
-      "path": "/v2/user/login"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "delete",
+        "path": "/v2/user/login"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "post",
-      "path": "/v2/user/logout"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "post",
+        "path": "/v2/user/logout"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "put",
-      "path": "/v2/user/logout"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "put",
+        "path": "/v2/user/logout"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "patch",
-      "path": "/v2/user/logout"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "patch",
+        "path": "/v2/user/logout"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "delete",
-      "path": "/v2/user/logout"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "delete",
+        "path": "/v2/user/logout"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "get",
-      "path": "/v2/user"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "get",
+        "path": "/v2/user"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "put",
-      "path": "/v2/user"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "put",
+        "path": "/v2/user"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "patch",
-      "path": "/v2/user"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "patch",
+        "path": "/v2/user"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     },
     {
-      "method": "delete",
-      "path": "/v2/user"
+      "name": "INVALID_METHOD",
+      "request": {
+        "method": "delete",
+        "path": "/v2/user"
+      },
+      "expect": {
+        "status": [
+          405
+        ]
+      }
     }
   ]);
 });
