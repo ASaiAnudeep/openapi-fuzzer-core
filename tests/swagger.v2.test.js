@@ -6,7 +6,7 @@ const Swagger = require('../src/swagger');
 test('swagger - fuzz', () => {
   const data = require('./data/swagger-pet-store-v2.json');
   const specs = fuzz.swagger(data);
-  assert.equal(specs.length, 95);
+  assert.equal(specs.length, 125);
 });
 
 test('swagger - fuzzPaths', () => {
@@ -934,7 +934,10 @@ test('swagger - fuzzParams', () => {
       "name": "INVALID_PATH_PARAM",
       "request": {
         "method": "post",
-        "path": "/v2/pet/STRING/uploadImage"
+        "path": "/v2/pet/{petId}/uploadImage",
+        "pathParams": {
+          "petId": "STRING"
+        }
       },
       "expect": {
         "status": [
@@ -946,7 +949,190 @@ test('swagger - fuzzParams', () => {
       "name": "INVALID_PATH_PARAM",
       "request": {
         "method": "post",
-        "path": "/v2/pet/true/uploadImage"
+        "path": "/v2/pet/{petId}/uploadImage",
+        "pathParams": {
+          "petId": true
+        }
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "post",
+        "path": "/v2/pet",
+        "queryParams": {},
+        "pathParams": {},
+        "body": ""
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "post",
+        "path": "/v2/pet",
+        "queryParams": {},
+        "pathParams": {},
+        "body": "STRING"
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "post",
+        "path": "/v2/pet",
+        "queryParams": {},
+        "pathParams": {},
+        "body": 10
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "post",
+        "path": "/v2/pet",
+        "queryParams": {},
+        "pathParams": {},
+        "body": true
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "post",
+        "path": "/v2/pet",
+        "queryParams": {},
+        "pathParams": {},
+        "body": null
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "post",
+        "path": "/v2/pet",
+        "queryParams": {},
+        "pathParams": {},
+        "body": []
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "put",
+        "path": "/v2/pet",
+        "queryParams": {},
+        "pathParams": {},
+        "body": ""
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "put",
+        "path": "/v2/pet",
+        "queryParams": {},
+        "pathParams": {},
+        "body": "STRING"
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "put",
+        "path": "/v2/pet",
+        "queryParams": {},
+        "pathParams": {},
+        "body": 10
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "put",
+        "path": "/v2/pet",
+        "queryParams": {},
+        "pathParams": {},
+        "body": true
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "put",
+        "path": "/v2/pet",
+        "queryParams": {},
+        "pathParams": {},
+        "body": null
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "put",
+        "path": "/v2/pet",
+        "queryParams": {},
+        "pathParams": {},
+        "body": []
       },
       "expect": {
         "status": [
@@ -958,7 +1144,10 @@ test('swagger - fuzzParams', () => {
       "name": "INVALID_PATH_PARAM",
       "request": {
         "method": "get",
-        "path": "/v2/pet/STRING"
+        "path": "/v2/pet/{petId}",
+        "pathParams": {
+          "petId": "STRING"
+        }
       },
       "expect": {
         "status": [
@@ -970,7 +1159,10 @@ test('swagger - fuzzParams', () => {
       "name": "INVALID_PATH_PARAM",
       "request": {
         "method": "get",
-        "path": "/v2/pet/true"
+        "path": "/v2/pet/{petId}",
+        "pathParams": {
+          "petId": true
+        }
       },
       "expect": {
         "status": [
@@ -982,7 +1174,10 @@ test('swagger - fuzzParams', () => {
       "name": "INVALID_PATH_PARAM",
       "request": {
         "method": "post",
-        "path": "/v2/pet/STRING"
+        "path": "/v2/pet/{petId}",
+        "pathParams": {
+          "petId": "STRING"
+        }
       },
       "expect": {
         "status": [
@@ -994,7 +1189,10 @@ test('swagger - fuzzParams', () => {
       "name": "INVALID_PATH_PARAM",
       "request": {
         "method": "post",
-        "path": "/v2/pet/true"
+        "path": "/v2/pet/{petId}",
+        "pathParams": {
+          "petId": true
+        }
       },
       "expect": {
         "status": [
@@ -1006,7 +1204,10 @@ test('swagger - fuzzParams', () => {
       "name": "INVALID_PATH_PARAM",
       "request": {
         "method": "delete",
-        "path": "/v2/pet/STRING"
+        "path": "/v2/pet/{petId}",
+        "pathParams": {
+          "petId": "STRING"
+        }
       },
       "expect": {
         "status": [
@@ -1018,7 +1219,100 @@ test('swagger - fuzzParams', () => {
       "name": "INVALID_PATH_PARAM",
       "request": {
         "method": "delete",
-        "path": "/v2/pet/true"
+        "path": "/v2/pet/{petId}",
+        "pathParams": {
+          "petId": true
+        }
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "post",
+        "path": "/v2/store/order",
+        "queryParams": {},
+        "pathParams": {},
+        "body": ""
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "post",
+        "path": "/v2/store/order",
+        "queryParams": {},
+        "pathParams": {},
+        "body": "STRING"
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "post",
+        "path": "/v2/store/order",
+        "queryParams": {},
+        "pathParams": {},
+        "body": 10
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "post",
+        "path": "/v2/store/order",
+        "queryParams": {},
+        "pathParams": {},
+        "body": true
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "post",
+        "path": "/v2/store/order",
+        "queryParams": {},
+        "pathParams": {},
+        "body": null
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "post",
+        "path": "/v2/store/order",
+        "queryParams": {},
+        "pathParams": {},
+        "body": []
       },
       "expect": {
         "status": [
@@ -1030,7 +1324,10 @@ test('swagger - fuzzParams', () => {
       "name": "INVALID_PATH_PARAM",
       "request": {
         "method": "get",
-        "path": "/v2/store/order/STRING"
+        "path": "/v2/store/order/{orderId}",
+        "pathParams": {
+          "orderId": "STRING"
+        }
       },
       "expect": {
         "status": [
@@ -1042,7 +1339,10 @@ test('swagger - fuzzParams', () => {
       "name": "INVALID_PATH_PARAM",
       "request": {
         "method": "get",
-        "path": "/v2/store/order/true"
+        "path": "/v2/store/order/{orderId}",
+        "pathParams": {
+          "orderId": true
+        }
       },
       "expect": {
         "status": [
@@ -1054,7 +1354,10 @@ test('swagger - fuzzParams', () => {
       "name": "INVALID_PATH_PARAM",
       "request": {
         "method": "get",
-        "path": "/v2/store/order/0"
+        "path": "/v2/store/order/{orderId}",
+        "pathParams": {
+          "orderId": 0
+        }
       },
       "expect": {
         "status": [
@@ -1066,7 +1369,10 @@ test('swagger - fuzzParams', () => {
       "name": "INVALID_PATH_PARAM",
       "request": {
         "method": "get",
-        "path": "/v2/store/order/11"
+        "path": "/v2/store/order/{orderId}",
+        "pathParams": {
+          "orderId": 11
+        }
       },
       "expect": {
         "status": [
@@ -1078,7 +1384,10 @@ test('swagger - fuzzParams', () => {
       "name": "INVALID_PATH_PARAM",
       "request": {
         "method": "delete",
-        "path": "/v2/store/order/STRING"
+        "path": "/v2/store/order/{orderId}",
+        "pathParams": {
+          "orderId": "STRING"
+        }
       },
       "expect": {
         "status": [
@@ -1090,7 +1399,10 @@ test('swagger - fuzzParams', () => {
       "name": "INVALID_PATH_PARAM",
       "request": {
         "method": "delete",
-        "path": "/v2/store/order/true"
+        "path": "/v2/store/order/{orderId}",
+        "pathParams": {
+          "orderId": true
+        }
       },
       "expect": {
         "status": [
@@ -1102,7 +1414,10 @@ test('swagger - fuzzParams', () => {
       "name": "INVALID_PATH_PARAM",
       "request": {
         "method": "delete",
-        "path": "/v2/store/order/0"
+        "path": "/v2/store/order/{orderId}",
+        "pathParams": {
+          "orderId": 0
+        }
       },
       "expect": {
         "status": [
@@ -1114,7 +1429,10 @@ test('swagger - fuzzParams', () => {
       "name": "INVALID_PATH_PARAM",
       "request": {
         "method": "get",
-        "path": "/v2/user/10"
+        "path": "/v2/user/{username}",
+        "pathParams": {
+          "username": 10
+        }
       },
       "expect": {
         "status": [
@@ -1126,7 +1444,112 @@ test('swagger - fuzzParams', () => {
       "name": "INVALID_PATH_PARAM",
       "request": {
         "method": "put",
-        "path": "/v2/user/10"
+        "path": "/v2/user/{username}",
+        "pathParams": {
+          "username": 10
+        }
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "put",
+        "path": "/v2/user/{username}",
+        "queryParams": {},
+        "pathParams": {
+          "username": "username"
+        },
+        "body": ""
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "put",
+        "path": "/v2/user/{username}",
+        "queryParams": {},
+        "pathParams": {
+          "username": "username"
+        },
+        "body": "STRING"
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "put",
+        "path": "/v2/user/{username}",
+        "queryParams": {},
+        "pathParams": {
+          "username": "username"
+        },
+        "body": 10
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "put",
+        "path": "/v2/user/{username}",
+        "queryParams": {},
+        "pathParams": {
+          "username": "username"
+        },
+        "body": true
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "put",
+        "path": "/v2/user/{username}",
+        "queryParams": {},
+        "pathParams": {
+          "username": "username"
+        },
+        "body": null
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "put",
+        "path": "/v2/user/{username}",
+        "queryParams": {},
+        "pathParams": {
+          "username": "username"
+        },
+        "body": []
       },
       "expect": {
         "status": [
@@ -1138,20 +1561,8 @@ test('swagger - fuzzParams', () => {
       "name": "INVALID_PATH_PARAM",
       "request": {
         "method": "delete",
-        "path": "/v2/user/10"
-      },
-      "expect": {
-        "status": [
-          400
-        ]
-      }
-    },
-    {
-      "name": "INVALID_QUERY_PARAM",
-      "request": {
-        "method": "get",
-        "path": "/v2/user/login",
-        "queryParams": {
+        "path": "/v2/user/{username}",
+        "pathParams": {
           "username": 10
         }
       },
@@ -1167,9 +1578,116 @@ test('swagger - fuzzParams', () => {
         "method": "get",
         "path": "/v2/user/login",
         "queryParams": {
+          "username": 10
+        },
+        "pathParams": {}
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_QUERY_PARAM",
+      "request": {
+        "method": "get",
+        "path": "/v2/user/login",
+        "queryParams": {
           "username": "username",
           "password": 10
-        }
+        },
+        "pathParams": {}
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "post",
+        "path": "/v2/user",
+        "queryParams": {},
+        "pathParams": {},
+        "body": ""
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "post",
+        "path": "/v2/user",
+        "queryParams": {},
+        "pathParams": {},
+        "body": "STRING"
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "post",
+        "path": "/v2/user",
+        "queryParams": {},
+        "pathParams": {},
+        "body": 10
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "post",
+        "path": "/v2/user",
+        "queryParams": {},
+        "pathParams": {},
+        "body": true
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "post",
+        "path": "/v2/user",
+        "queryParams": {},
+        "pathParams": {},
+        "body": null
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_BODY_PARAM",
+      "request": {
+        "method": "post",
+        "path": "/v2/user",
+        "queryParams": {},
+        "pathParams": {},
+        "body": []
       },
       "expect": {
         "status": [

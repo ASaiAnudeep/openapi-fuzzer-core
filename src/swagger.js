@@ -71,27 +71,28 @@ class Swagger {
         const info = path[method];
         const parameters = info.parameters;
         if (parameters && parameters.length > 0) {
-          // const bodyParams = parameters.filter(parameter => parameter.in === 'body');
           this.fuzzPathParams(route, method, parameters);
           this.fuzzQueryParams(route, method, parameters);
+          this.fuzzBodyParams(route, method, parameters);
         }
       }
     }
   }
 
   fuzzPathParams(route, method, parameters) {
-    const pathParams = parameters.filter(parameter => parameter.in === 'path');
-    for (const parameter of pathParams) {
-      const otherPathParams = pathParams.filter(pathParam => pathParam.name !== parameter.name);
-      let currentRoute = route;
-      otherPathParams.forEach(otherParam => { currentRoute = currentRoute.replace(`{${otherParam.name}}`, this.fakeParameter(otherParam)); });
+    const pathParameters = parameters.filter(parameter => parameter.in === 'path');
+    const fakePathParams = this.getFakeParams(pathParameters);
+    for (const parameter of pathParameters) {
       const values = this.fuzzParameter(parameter);
       for (const value of values) {
+        const pathParams = Object.assign({}, fakePathParams);
+        pathParams[`${parameter.name}`] = value;
         this.specs.push({
           name: 'INVALID_PATH_PARAM',
           request: {
             method,
-            path: `${this.basePath}${currentRoute.replace(`{${parameter.name}}`, value)}`
+            path: `${this.basePath}${route}`,
+            pathParams
           },
           expect: {
             status: [400]
@@ -102,12 +103,11 @@ class Swagger {
   }
 
   fuzzQueryParams(route, method, parameters) {
-    const pathParams = parameters.filter(parameter => parameter.in === 'path');
-    const queryParams = parameters.filter(parameter => parameter.in === 'query');
+    const pathParameters = parameters.filter(parameter => parameter.in === 'path');
+    const pathParams = this.getFakeParams(pathParameters);
+    const queryParameters = parameters.filter(parameter => parameter.in === 'query');
     const previousQueryParams = {};
-    for (const parameter of queryParams) {
-      let currentRoute = route;
-      pathParams.forEach(pathParam => { currentRoute = currentRoute.replace(`{${pathParam.name}}`, this.fakeParameter(pathParam)); });
+    for (const parameter of queryParameters) {
       const values = this.fuzzParameter(parameter);
       for (const value of values) {
         const queryParams = Object.assign({}, previousQueryParams);
@@ -116,8 +116,9 @@ class Swagger {
           name: 'INVALID_QUERY_PARAM',
           request: {
             method,
-            path: `${this.basePath}${currentRoute}`,
-            queryParams
+            path: `${this.basePath}${route}`,
+            queryParams,
+            pathParams
           },
           expect: {
             status: [400]
@@ -125,6 +126,36 @@ class Swagger {
         });
       }
       previousQueryParams[`${parameter.name}`] = this.fakeParameter(parameter);
+    }
+  }
+
+  fuzzBodyParams(route, method, parameters) {
+    const pathParameters = parameters.filter(parameter => parameter.in === 'path');
+    const pathParams = this.getFakeParams(pathParameters);
+    const queryParameters = parameters.filter(parameter => parameter.in === 'query');
+    const queryParams = this.getFakeParams(queryParameters);
+    const bodyParameters = parameters.filter(parameter => parameter.in === 'body');
+    for (const parameter of bodyParameters) {
+      const schema = parameter.schema;
+      if (schema && schema['$ref']) {
+        const definition = schema['$ref'].replace('#/definitions/', '');
+        const values = this.fuzzSchema(this.data.definitions[definition]);
+        for (const value of values) {
+          this.specs.push({
+            name: 'INVALID_BODY_PARAM',
+            request: {
+              method,
+              path: `${this.basePath}${route}`,
+              queryParams,
+              pathParams,
+              body: value
+            },
+            expect: {
+              status: [400]
+            }
+          });
+        }
+      }
     }
   }
 
@@ -160,6 +191,12 @@ class Swagger {
     return ['STRING', 10];
   }
 
+  fuzzSchema(schema) {
+    if (schema.type === 'object') {
+      return [ '', 'STRING', 10, true, null, []];
+    }
+  }
+
   fakeParameter(parameter) {
     switch (parameter.type) {
       case 'integer':
@@ -171,6 +208,14 @@ class Swagger {
       default:
         return '';
     }
+  }
+
+  getFakeParams(parameters) {
+    const pathParams = {};
+    for (const parameter of parameters) {
+      pathParams[`${parameter.name}`] = this.fakeParameter(parameter);
+    }
+    return pathParams;
   }
 
 }
