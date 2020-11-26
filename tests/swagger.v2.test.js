@@ -6,7 +6,7 @@ const Swagger = require('../src/swagger');
 test('swagger - fuzz', () => {
   const data = require('./data/swagger-pet-store-v2.json');
   const specs = fuzz.swagger(data);
-  assert.equal(specs.length, 75);
+  assert.equal(specs.length, 95);
 });
 
 test('swagger - fuzzPaths', () => {
@@ -317,10 +317,10 @@ test('swagger - fuzzPaths', () => {
   ]);
 });
 
-test('swagger - fuzzPathMethods', () => {
+test('swagger - fuzzMethods', () => {
   const data = require('./data/swagger-pet-store-v2.json');
   const swagger = new Swagger(data);
-  swagger.fuzzPathMethods();
+  swagger.fuzzMethods();
   assert.equal(swagger.specs, [
     {
       "name": "INVALID_METHOD",
@@ -919,6 +919,261 @@ test('swagger - fuzzPathMethods', () => {
       "expect": {
         "status": [
           405
+        ]
+      }
+    }
+  ]);
+});
+
+test('swagger - fuzzParams', () => {
+  const data = require('./data/swagger-pet-store-v2.json');
+  const swagger = new Swagger(data);
+  swagger.fuzzParams();
+  assert.equal(swagger.specs, [
+    {
+      "name": "INVALID_PATH_PARAM",
+      "request": {
+        "method": "post",
+        "path": "/v2/pet/STRING/uploadImage"
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_PATH_PARAM",
+      "request": {
+        "method": "post",
+        "path": "/v2/pet/true/uploadImage"
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_PATH_PARAM",
+      "request": {
+        "method": "get",
+        "path": "/v2/pet/STRING"
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_PATH_PARAM",
+      "request": {
+        "method": "get",
+        "path": "/v2/pet/true"
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_PATH_PARAM",
+      "request": {
+        "method": "post",
+        "path": "/v2/pet/STRING"
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_PATH_PARAM",
+      "request": {
+        "method": "post",
+        "path": "/v2/pet/true"
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_PATH_PARAM",
+      "request": {
+        "method": "delete",
+        "path": "/v2/pet/STRING"
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_PATH_PARAM",
+      "request": {
+        "method": "delete",
+        "path": "/v2/pet/true"
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_PATH_PARAM",
+      "request": {
+        "method": "get",
+        "path": "/v2/store/order/STRING"
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_PATH_PARAM",
+      "request": {
+        "method": "get",
+        "path": "/v2/store/order/true"
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_PATH_PARAM",
+      "request": {
+        "method": "get",
+        "path": "/v2/store/order/0"
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_PATH_PARAM",
+      "request": {
+        "method": "get",
+        "path": "/v2/store/order/11"
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_PATH_PARAM",
+      "request": {
+        "method": "delete",
+        "path": "/v2/store/order/STRING"
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_PATH_PARAM",
+      "request": {
+        "method": "delete",
+        "path": "/v2/store/order/true"
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_PATH_PARAM",
+      "request": {
+        "method": "delete",
+        "path": "/v2/store/order/0"
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_PATH_PARAM",
+      "request": {
+        "method": "get",
+        "path": "/v2/user/10"
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_PATH_PARAM",
+      "request": {
+        "method": "put",
+        "path": "/v2/user/10"
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_PATH_PARAM",
+      "request": {
+        "method": "delete",
+        "path": "/v2/user/10"
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_QUERY_PARAM",
+      "request": {
+        "method": "get",
+        "path": "/v2/user/login",
+        "queryParams": {
+          "username": 10
+        }
+      },
+      "expect": {
+        "status": [
+          400
+        ]
+      }
+    },
+    {
+      "name": "INVALID_QUERY_PARAM",
+      "request": {
+        "method": "get",
+        "path": "/v2/user/login",
+        "queryParams": {
+          "username": "username",
+          "password": 10
+        }
+      },
+      "expect": {
+        "status": [
+          400
         ]
       }
     }
