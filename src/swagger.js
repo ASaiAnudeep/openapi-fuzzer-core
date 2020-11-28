@@ -1,3 +1,5 @@
+const { klona } = require("klona");
+
 const HTTP_METHODS = ['get', 'post', 'put', 'patch', 'delete'];
 
 class Swagger {
@@ -138,8 +140,7 @@ class Swagger {
     for (const parameter of bodyParameters) {
       const schema = parameter.schema;
       if (schema && schema['$ref']) {
-        const definition = schema['$ref'].replace('#/definitions/', '');
-        const values = this.fuzzSchema(this.data.definitions[definition]);
+        const values = this.fuzzParameter(this.getDefinition(schema['$ref']), true);
         for (const value of values) {
           this.specs.push({
             name: 'INVALID_BODY_PARAM',
@@ -159,20 +160,27 @@ class Swagger {
     }
   }
 
-  fuzzParameter(parameter) {
+  fuzzParameter(parameter, nonPrimitives) {
     switch (parameter.type) {
       case 'integer':
-        return this.fuzzIntegerParam(parameter);
+        return this.fuzzIntegerParam(parameter, nonPrimitives);
       case 'string':
-        return this.fuzzStringParam();
+        return this.fuzzStringParam(parameter, nonPrimitives);
       case 'boolean':
-        return this.fuzzBooleanParam();
+        return this.fuzzBooleanParam(parameter, nonPrimitives);
+      case 'object':
+        return this.fuzzObjectParam(parameter, nonPrimitives);
+      case 'array':
+        return this.fuzzArrayParam(parameter, nonPrimitives);
       default:
+        if (parameter['$ref']) {
+          return this.fuzzParameter(this.getDefinition(parameter['$ref']), nonPrimitives);
+        }
         return [];
     }
   }
 
-  fuzzIntegerParam(parameter) {
+  fuzzIntegerParam(parameter, nonPrimitives) {
     const values = ['STRING', true];
     if (typeof parameter.minimum === 'number') {
       values.push(parameter.minimum - 1);
@@ -180,32 +188,86 @@ class Swagger {
     if (typeof parameter.maximum === 'number') {
       values.push(parameter.maximum + 1);
     }
+    if (nonPrimitives) {
+      return values.concat([{}, null, []]);
+    }
     return values;
   }
 
-  fuzzStringParam() {
+  fuzzStringParam(parameter, nonPrimitives) {
+    if (nonPrimitives) {
+      return [10, true, {}, null, []];
+    }
     return [10];
   }
 
-  fuzzBooleanParam() {
+  fuzzBooleanParam(parameter, nonPrimitives) {
+    if (nonPrimitives) {
+      return ['STRING', 10, {}, null, []];
+    }
     return ['STRING', 10];
   }
 
-  fuzzSchema(schema) {
-    if (schema.type === 'object') {
-      return [ '', 'STRING', 10, true, null, []];
+  fuzzObjectParam(parameter, nonPrimitives) {
+    const values = ['', 'STRING', 10, true, null, []];
+    const { required, properties } = parameter;
+    if (required && required.length > 0) {
+      values.push({});
+      for (const req of required) {
+        const otherRequiredParams = required.filter(_req => _req !== req);
+        const value = {};
+        for (const otherReqParam of otherRequiredParams) {
+          value[otherReqParam] = this.fakeParameter(properties[otherReqParam]);
+        }
+        values.push(value);
+      }
     }
+    const goldenCopy = this.fakeParameter(parameter);
+    for (const property of Object.keys(properties)) {
+      const fuzzValues = this.fuzzParameter(properties[property], nonPrimitives);
+      for (const fuzzValue of fuzzValues) {
+        const fake = klona(goldenCopy);
+        fake[property] = fuzzValue;
+        values.push(fake);
+      }
+    }
+    return values;
+  }
+
+  fuzzArrayParam(parameter, nonPrimitives) {
+    const values = ['', 'STRING', 10, true, null, {}];
+    const fzs = this.fuzzParameter(parameter.items, nonPrimitives);
+    fzs.forEach(fuzz => values.push([fuzz]));
+    return values;
   }
 
   fakeParameter(parameter) {
+    let fake;
+    const properties = parameter.properties;
     switch (parameter.type) {
       case 'integer':
         return 10;
       case 'string':
-        return parameter.name;
+        if (parameter.example) return parameter.example;
+        if (parameter.enum) return parameter.enum[0];
+        if (parameter.name) return parameter.name;
+        return 'STRING';
       case 'boolean':
         return true;
+      case 'object':
+        fake = {};
+        for (const property of Object.keys(properties)) {
+          fake[property] = this.fakeParameter(properties[property]);
+        }
+        return fake;
+      case 'array':
+        fake = [];
+        fake.push(this.fakeParameter(parameter.items));
+        return fake;
       default:
+        if (parameter['$ref']) {
+          return this.fakeParameter(this.getDefinition(parameter['$ref']));
+        }
         return '';
     }
   }
@@ -216,6 +278,11 @@ class Swagger {
       pathParams[`${parameter.name}`] = this.fakeParameter(parameter);
     }
     return pathParams;
+  }
+
+  getDefinition(ref) {
+    const definition = ref.replace('#/definitions/', '');
+    return this.data.definitions[definition];
   }
 
 }

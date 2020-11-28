@@ -25,5 +25,8 @@
   "homepage": "https://github.com/ASaiAnudeep/openapi-fuzzer-core#readme",
   "devDependencies": {
     "uvu": "^0.4.1"
+  },
+  "dependencies": {
+    "klona": "^2.0.4"
   }
 }
