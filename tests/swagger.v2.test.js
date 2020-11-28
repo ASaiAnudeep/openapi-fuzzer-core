@@ -15,7 +15,7 @@ test('swagger - fuzzPaths', () => {
   swagger.fuzzPaths();
   assert.equal(swagger.specs, [
     {
-      "name": "INVALID_PATH",
+      "name": "PATH",
       "request": {
         "method": "get",
         "path": "/ROOT/INVALID/PATH"
@@ -27,7 +27,7 @@ test('swagger - fuzzPaths', () => {
       }
     },
     {
-      "name": "INVALID_PATH",
+      "name": "PATH",
       "request": {
         "method": "post",
         "path": "/ROOT/INVALID/PATH"
@@ -39,7 +39,7 @@ test('swagger - fuzzPaths', () => {
       }
     },
     {
-      "name": "INVALID_PATH",
+      "name": "PATH",
       "request": {
         "method": "put",
         "path": "/ROOT/INVALID/PATH"
@@ -51,7 +51,7 @@ test('swagger - fuzzPaths', () => {
       }
     },
     {
-      "name": "INVALID_PATH",
+      "name": "PATH",
       "request": {
         "method": "patch",
         "path": "/ROOT/INVALID/PATH"
@@ -63,7 +63,7 @@ test('swagger - fuzzPaths', () => {
       }
     },
     {
-      "name": "INVALID_PATH",
+      "name": "PATH",
       "request": {
         "method": "delete",
         "path": "/ROOT/INVALID/PATH"
@@ -75,7 +75,7 @@ test('swagger - fuzzPaths', () => {
       }
     },
     {
-      "name": "INVALID_PATH",
+      "name": "PATH",
       "request": {
         "method": "post",
         "path": "/v2/pet/{petId}/uploadImage/INVALID/PATH"
@@ -87,7 +87,7 @@ test('swagger - fuzzPaths', () => {
       }
     },
     {
-      "name": "INVALID_PATH",
+      "name": "PATH",
       "request": {
         "method": "post",
         "path": "/v2/pet/INVALID/PATH"
@@ -99,7 +99,7 @@ test('swagger - fuzzPaths', () => {
       }
     },
     {
-      "name": "INVALID_PATH",
+      "name": "PATH",
       "request": {
         "method": "put",
         "path": "/v2/pet/INVALID/PATH"
@@ -111,7 +111,7 @@ test('swagger - fuzzPaths', () => {
       }
     },
     {
-      "name": "INVALID_PATH",
+      "name": "PATH",
       "request": {
         "method": "get",
         "path": "/v2/pet/findByStatus/INVALID/PATH"
@@ -123,7 +123,7 @@ test('swagger - fuzzPaths', () => {
       }
     },
     {
-      "name": "INVALID_PATH",
+      "name": "PATH",
       "request": {
         "method": "get",
         "path": "/v2/pet/findByTags/INVALID/PATH"
@@ -135,7 +135,7 @@ test('swagger - fuzzPaths', () => {
       }
     },
     {
-      "name": "INVALID_PATH",
+      "name": "PATH",
       "request": {
         "method": "get",
         "path": "/v2/pet/{petId}/INVALID/PATH"
@@ -147,7 +147,7 @@ test('swagger - fuzzPaths', () => {
       }
     },
     {
-      "name": "INVALID_PATH",
+      "name": "PATH",
       "request": {
         "method": "post",
         "path": "/v2/pet/{petId}/INVALID/PATH"
@@ -159,7 +159,7 @@ test('swagger - fuzzPaths', () => {
       }
     },
     {
-      "name": "INVALID_PATH",
+      "name": "PATH",
       "request": {
         "method": "delete",
         "path": "/v2/pet/{petId}/INVALID/PATH"
@@ -171,7 +171,7 @@ test('swagger - fuzzPaths', () => {
       }
     },
     {
-      "name": "INVALID_PATH",
+      "name": "PATH",
       "request": {
         "method": "post",
         "path": "/v2/store/order/INVALID/PATH"
@@ -183,7 +183,7 @@ test('swagger - fuzzPaths', () => {
       }
     },
     {
-      "name": "INVALID_PATH",
+      "name": "PATH",
       "request": {
         "method": "get",
         "path": "/v2/store/order/{orderId}/INVALID/PATH"
@@ -195,7 +195,7 @@ test('swagger - fuzzPaths', () => {
       }
     },
     {
-      "name": "INVALID_PATH",
+      "name": "PATH",
       "request": {
         "method": "delete",
         "path": "/v2/store/order/{orderId}/INVALID/PATH"
@@ -207,7 +207,7 @@ test('swagger - fuzzPaths', () => {
       }
     },
     {
-      "name": "INVALID_PATH",
+      "name": "PATH",
       "request": {
         "method": "get",
         "path": "/v2/store/inventory/INVALID/PATH"
@@ -219,7 +219,7 @@ test('swagger - fuzzPaths', () => {
       }
     },
     {
-      "name": "INVALID_PATH",
+      "name": "PATH",
       "request": {
         "method": "post",
         "path": "/v2/user/createWithArray/INVALID/PATH"
@@ -231,7 +231,7 @@ test('swagger - fuzzPaths', () => {
       }
     },
     {
-      "name": "INVALID_PATH",
+      "name": "PATH",
       "request": {
         "method": "post",
         "path": "/v2/user/createWithList/INVALID/PATH"
@@ -243,7 +243,7 @@ test('swagger - fuzzPaths', () => {
       }
     },
     {
-      "name": "INVALID_PATH",
+      "name": "PATH",
       "request": {
         "method": "get",
         "path": "/v2/user/{username}/INVALID/PATH"
@@ -255,7 +255,7 @@ test('swagger - fuzzPaths', () => {
       }
     },
     {
-      "name": "INVALID_PATH",
+      "name": "PATH",
       "request": {
         "method": "put",
         "path": "/v2/user/{username}/INVALID/PATH"
@@ -267,7 +267,7 @@ test('swagger - fuzzPaths', () => {
       }
     },
     {
-      "name": "INVALID_PATH",
+      "name": "PATH",
       "request": {
         "method": "delete",
         "path": "/v2/user/{username}/INVALID/PATH"
@@ -279,7 +279,7 @@ test('swagger - fuzzPaths', () => {
       }
     },
     {
-      "name": "INVALID_PATH",
+      "name": "PATH",
       "request": {
         "method": "get",
         "path": "/v2/user/login/INVALID/PATH"
@@ -291,7 +291,7 @@ test('swagger - fuzzPaths', () => {
       }
     },
     {
-      "name": "INVALID_PATH",
+      "name": "PATH",
       "request": {
         "method": "get",
         "path": "/v2/user/logout/INVALID/PATH"
@@ -303,7 +303,7 @@ test('swagger - fuzzPaths', () => {
       }
     },
     {
-      "name": "INVALID_PATH",
+      "name": "PATH",
       "request": {
         "method": "post",
         "path": "/v2/user/INVALID/PATH"
@@ -323,7 +323,7 @@ test('swagger - fuzzMethods', () => {
   swagger.fuzzMethods();
   assert.equal(swagger.specs, [
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "get",
         "path": "/v2/pet/{petId}/uploadImage"
@@ -335,7 +335,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "put",
         "path": "/v2/pet/{petId}/uploadImage"
@@ -347,7 +347,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "patch",
         "path": "/v2/pet/{petId}/uploadImage"
@@ -359,7 +359,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "delete",
         "path": "/v2/pet/{petId}/uploadImage"
@@ -371,7 +371,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "get",
         "path": "/v2/pet"
@@ -383,7 +383,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "patch",
         "path": "/v2/pet"
@@ -395,7 +395,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "delete",
         "path": "/v2/pet"
@@ -407,7 +407,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "post",
         "path": "/v2/pet/findByStatus"
@@ -419,7 +419,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "put",
         "path": "/v2/pet/findByStatus"
@@ -431,7 +431,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "patch",
         "path": "/v2/pet/findByStatus"
@@ -443,7 +443,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "delete",
         "path": "/v2/pet/findByStatus"
@@ -455,7 +455,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "post",
         "path": "/v2/pet/findByTags"
@@ -467,7 +467,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "put",
         "path": "/v2/pet/findByTags"
@@ -479,7 +479,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "patch",
         "path": "/v2/pet/findByTags"
@@ -491,7 +491,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "delete",
         "path": "/v2/pet/findByTags"
@@ -503,7 +503,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "put",
         "path": "/v2/pet/{petId}"
@@ -515,7 +515,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "patch",
         "path": "/v2/pet/{petId}"
@@ -527,7 +527,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "get",
         "path": "/v2/store/order"
@@ -539,7 +539,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "put",
         "path": "/v2/store/order"
@@ -551,7 +551,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "patch",
         "path": "/v2/store/order"
@@ -563,7 +563,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "delete",
         "path": "/v2/store/order"
@@ -575,7 +575,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "post",
         "path": "/v2/store/order/{orderId}"
@@ -587,7 +587,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "put",
         "path": "/v2/store/order/{orderId}"
@@ -599,7 +599,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "patch",
         "path": "/v2/store/order/{orderId}"
@@ -611,7 +611,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "post",
         "path": "/v2/store/inventory"
@@ -623,7 +623,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "put",
         "path": "/v2/store/inventory"
@@ -635,7 +635,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "patch",
         "path": "/v2/store/inventory"
@@ -647,7 +647,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "delete",
         "path": "/v2/store/inventory"
@@ -659,7 +659,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "get",
         "path": "/v2/user/createWithArray"
@@ -671,7 +671,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "put",
         "path": "/v2/user/createWithArray"
@@ -683,7 +683,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "patch",
         "path": "/v2/user/createWithArray"
@@ -695,7 +695,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "delete",
         "path": "/v2/user/createWithArray"
@@ -707,7 +707,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "get",
         "path": "/v2/user/createWithList"
@@ -719,7 +719,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "put",
         "path": "/v2/user/createWithList"
@@ -731,7 +731,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "patch",
         "path": "/v2/user/createWithList"
@@ -743,7 +743,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "delete",
         "path": "/v2/user/createWithList"
@@ -755,7 +755,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "post",
         "path": "/v2/user/{username}"
@@ -767,7 +767,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "patch",
         "path": "/v2/user/{username}"
@@ -779,7 +779,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "post",
         "path": "/v2/user/login"
@@ -791,7 +791,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "put",
         "path": "/v2/user/login"
@@ -803,7 +803,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "patch",
         "path": "/v2/user/login"
@@ -815,7 +815,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "delete",
         "path": "/v2/user/login"
@@ -827,7 +827,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "post",
         "path": "/v2/user/logout"
@@ -839,7 +839,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "put",
         "path": "/v2/user/logout"
@@ -851,7 +851,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "patch",
         "path": "/v2/user/logout"
@@ -863,7 +863,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "delete",
         "path": "/v2/user/logout"
@@ -875,7 +875,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "get",
         "path": "/v2/user"
@@ -887,7 +887,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "put",
         "path": "/v2/user"
@@ -899,7 +899,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "patch",
         "path": "/v2/user"
@@ -911,7 +911,7 @@ test('swagger - fuzzMethods', () => {
       }
     },
     {
-      "name": "INVALID_METHOD",
+      "name": "METHOD",
       "request": {
         "method": "delete",
         "path": "/v2/user"

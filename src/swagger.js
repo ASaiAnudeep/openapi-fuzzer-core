@@ -19,7 +19,7 @@ class Swagger {
   fuzzPaths() {
     HTTP_METHODS.forEach(method => {
       this.specs.push({
-        name: 'INVALID_PATH',
+        name: 'PATH',
         request: {
           method,
           path: '/ROOT/INVALID/PATH'
@@ -33,7 +33,7 @@ class Swagger {
       const path = this.data.paths[route];
       for (const method of Object.keys(path)) {
         this.specs.push({
-          name: 'INVALID_PATH',
+          name: 'PATH',
           request: {
             method,
             path: `${this.basePath}${route}/INVALID/PATH`
@@ -52,7 +52,7 @@ class Swagger {
       HTTP_METHODS.forEach(method => {
         if (!path[method]) {
           this.specs.push({
-            name: 'INVALID_METHOD',
+            name: 'METHOD',
             request: {
               method,
               path: `${this.basePath}${route}`
@@ -90,7 +90,7 @@ class Swagger {
         const pathParams = Object.assign({}, fakePathParams);
         pathParams[`${parameter.name}`] = value;
         this.specs.push({
-          name: 'INVALID_PATH_PARAM',
+          name: 'PATH PARAMS',
           request: {
             method,
             path: `${this.basePath}${route}`,
@@ -115,7 +115,7 @@ class Swagger {
         const queryParams = Object.assign({}, previousQueryParams);
         queryParams[`${parameter.name}`] = value;
         this.specs.push({
-          name: 'INVALID_QUERY_PARAM',
+          name: 'QUERY PARAMS',
           request: {
             method,
             path: `${this.basePath}${route}`,
@@ -143,7 +143,7 @@ class Swagger {
         const values = this.fuzzParameter(this.getDefinition(schema['$ref']), true);
         for (const value of values) {
           this.specs.push({
-            name: 'INVALID_BODY_PARAM',
+            name: 'BODY',
             request: {
               method,
               path: `${this.basePath}${route}`,
