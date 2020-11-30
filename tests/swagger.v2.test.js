@@ -6,7 +6,7 @@ const Swagger = require('../src/swagger');
 test('swagger - fuzz', () => {
   const data = require('./data/swagger-pet-store-v2.json');
   const specs = fuzz.swagger(data);
-  assert.equal(specs.length, 383);
+  assert.equal(specs.length, 373);
 });
 
 test('swagger - fuzzPaths', () => {

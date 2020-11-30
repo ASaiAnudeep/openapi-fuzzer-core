@@ -142,6 +142,7 @@ class Swagger {
       if (schema && schema['$ref']) {
         const values = this.fuzzParameter(this.getDefinition(schema['$ref']), true);
         for (const value of values) {
+          if (typeof value === 'number' || typeof value === 'boolean') continue;
           this.specs.push({
             name: 'BODY',
             request: {
@@ -223,12 +224,14 @@ class Swagger {
       }
     }
     const goldenCopy = this.fakeParameter(parameter);
-    for (const property of Object.keys(properties)) {
-      const fuzzValues = this.fuzzParameter(properties[property], nonPrimitives);
-      for (const fuzzValue of fuzzValues) {
-        const fake = klona(goldenCopy);
-        fake[property] = fuzzValue;
-        values.push(fake);
+    if (properties) {
+      for (const property of Object.keys(properties)) {
+        const fuzzValues = this.fuzzParameter(properties[property], nonPrimitives);
+        for (const fuzzValue of fuzzValues) {
+          const fake = klona(goldenCopy);
+          fake[property] = fuzzValue;
+          values.push(fake);
+        }
       }
     }
     return values;
@@ -243,7 +246,7 @@ class Swagger {
 
   fakeParameter(parameter) {
     let fake;
-    const properties = parameter.properties;
+    const { example, properties } = parameter;
     switch (parameter.type) {
       case 'integer':
         return 10;
@@ -256,8 +259,12 @@ class Swagger {
         return true;
       case 'object':
         fake = {};
-        for (const property of Object.keys(properties)) {
-          fake[property] = this.fakeParameter(properties[property]);
+        if (properties) {
+          for (const property of Object.keys(properties)) {
+            fake[property] = this.fakeParameter(properties[property]);
+          }
+        } else if (example) {
+          fake = example;
         }
         return fake;
       case 'array':
