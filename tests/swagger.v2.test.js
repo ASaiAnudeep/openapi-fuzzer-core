@@ -6,7 +6,7 @@ const Swagger = require('../src/swagger');
 test('swagger - fuzz', () => {
   const data = require('./data/swagger-pet-store-v2.json');
   const specs = fuzz.swagger(data);
-  assert.equal(specs.length, 388);
+  assert.equal(specs.length, 366);
 });
 
 test('swagger - fuzzPaths', () => {
@@ -66,18 +66,6 @@ test('swagger - fuzzPaths', () => {
       "name": "PATH",
       "request": {
         "method": "delete",
-        "path": "/ROOT/INVALID/PATH"
-      },
-      "expect": {
-        "status": [
-          404
-        ]
-      }
-    },
-    {
-      "name": "PATH",
-      "request": {
-        "method": "head",
         "path": "/ROOT/INVALID/PATH"
       },
       "expect": {
@@ -385,18 +373,6 @@ test('swagger - fuzzMethods', () => {
     {
       "name": "METHOD",
       "request": {
-        "method": "head",
-        "path": "/v2/pet/{petId}/uploadImage"
-      },
-      "expect": {
-        "status": [
-          405
-        ]
-      }
-    },
-    {
-      "name": "METHOD",
-      "request": {
         "method": "get",
         "path": "/v2/pet"
       },
@@ -433,18 +409,6 @@ test('swagger - fuzzMethods', () => {
     {
       "name": "METHOD",
       "request": {
-        "method": "head",
-        "path": "/v2/pet"
-      },
-      "expect": {
-        "status": [
-          405
-        ]
-      }
-    },
-    {
-      "name": "METHOD",
-      "request": {
         "method": "post",
         "path": "/v2/pet/findByStatus"
       },
@@ -493,18 +457,6 @@ test('swagger - fuzzMethods', () => {
     {
       "name": "METHOD",
       "request": {
-        "method": "head",
-        "path": "/v2/pet/findByStatus"
-      },
-      "expect": {
-        "status": [
-          405
-        ]
-      }
-    },
-    {
-      "name": "METHOD",
-      "request": {
         "method": "post",
         "path": "/v2/pet/findByTags"
       },
@@ -542,18 +494,6 @@ test('swagger - fuzzMethods', () => {
       "name": "METHOD",
       "request": {
         "method": "delete",
-        "path": "/v2/pet/findByTags"
-      },
-      "expect": {
-        "status": [
-          405
-        ]
-      }
-    },
-    {
-      "name": "METHOD",
-      "request": {
-        "method": "head",
         "path": "/v2/pet/findByTags"
       },
       "expect": {
@@ -589,18 +529,6 @@ test('swagger - fuzzMethods', () => {
     {
       "name": "METHOD",
       "request": {
-        "method": "head",
-        "path": "/v2/pet/{petId}"
-      },
-      "expect": {
-        "status": [
-          405
-        ]
-      }
-    },
-    {
-      "name": "METHOD",
-      "request": {
         "method": "get",
         "path": "/v2/store/order"
       },
@@ -649,18 +577,6 @@ test('swagger - fuzzMethods', () => {
     {
       "name": "METHOD",
       "request": {
-        "method": "head",
-        "path": "/v2/store/order"
-      },
-      "expect": {
-        "status": [
-          405
-        ]
-      }
-    },
-    {
-      "name": "METHOD",
-      "request": {
         "method": "post",
         "path": "/v2/store/order/{orderId}"
       },
@@ -686,18 +602,6 @@ test('swagger - fuzzMethods', () => {
       "name": "METHOD",
       "request": {
         "method": "patch",
-        "path": "/v2/store/order/{orderId}"
-      },
-      "expect": {
-        "status": [
-          405
-        ]
-      }
-    },
-    {
-      "name": "METHOD",
-      "request": {
-        "method": "head",
         "path": "/v2/store/order/{orderId}"
       },
       "expect": {
@@ -757,18 +661,6 @@ test('swagger - fuzzMethods', () => {
     {
       "name": "METHOD",
       "request": {
-        "method": "head",
-        "path": "/v2/store/inventory"
-      },
-      "expect": {
-        "status": [
-          405
-        ]
-      }
-    },
-    {
-      "name": "METHOD",
-      "request": {
         "method": "get",
         "path": "/v2/user/createWithArray"
       },
@@ -817,18 +709,6 @@ test('swagger - fuzzMethods', () => {
     {
       "name": "METHOD",
       "request": {
-        "method": "head",
-        "path": "/v2/user/createWithArray"
-      },
-      "expect": {
-        "status": [
-          405
-        ]
-      }
-    },
-    {
-      "name": "METHOD",
-      "request": {
         "method": "get",
         "path": "/v2/user/createWithList"
       },
@@ -866,18 +746,6 @@ test('swagger - fuzzMethods', () => {
       "name": "METHOD",
       "request": {
         "method": "delete",
-        "path": "/v2/user/createWithList"
-      },
-      "expect": {
-        "status": [
-          405
-        ]
-      }
-    },
-    {
-      "name": "METHOD",
-      "request": {
-        "method": "head",
         "path": "/v2/user/createWithList"
       },
       "expect": {
@@ -913,18 +781,6 @@ test('swagger - fuzzMethods', () => {
     {
       "name": "METHOD",
       "request": {
-        "method": "head",
-        "path": "/v2/user/{username}"
-      },
-      "expect": {
-        "status": [
-          405
-        ]
-      }
-    },
-    {
-      "name": "METHOD",
-      "request": {
         "method": "post",
         "path": "/v2/user/login"
       },
@@ -973,18 +829,6 @@ test('swagger - fuzzMethods', () => {
     {
       "name": "METHOD",
       "request": {
-        "method": "head",
-        "path": "/v2/user/login"
-      },
-      "expect": {
-        "status": [
-          405
-        ]
-      }
-    },
-    {
-      "name": "METHOD",
-      "request": {
         "method": "post",
         "path": "/v2/user/logout"
       },
@@ -1022,18 +866,6 @@ test('swagger - fuzzMethods', () => {
       "name": "METHOD",
       "request": {
         "method": "delete",
-        "path": "/v2/user/logout"
-      },
-      "expect": {
-        "status": [
-          405
-        ]
-      }
-    },
-    {
-      "name": "METHOD",
-      "request": {
-        "method": "head",
         "path": "/v2/user/logout"
       },
       "expect": {
@@ -1082,18 +914,6 @@ test('swagger - fuzzMethods', () => {
       "name": "METHOD",
       "request": {
         "method": "delete",
-        "path": "/v2/user"
-      },
-      "expect": {
-        "status": [
-          405
-        ]
-      }
-    },
-    {
-      "name": "METHOD",
-      "request": {
-        "method": "head",
         "path": "/v2/user"
       },
       "expect": {

@@ -1,6 +1,6 @@
 const { klona } = require("klona");
 
-const HTTP_METHODS = ['get', 'post', 'put', 'patch', 'delete', 'head'];
+const HTTP_METHODS = ['get', 'post', 'put', 'patch', 'delete'];
 
 class Swagger {
 
@@ -199,7 +199,7 @@ class Swagger {
     if (nonPrimitives) {
       return [10, true, {}, null, []];
     }
-    return [10];
+    return [];
   }
 
   fuzzBooleanParam(parameter, nonPrimitives) {
