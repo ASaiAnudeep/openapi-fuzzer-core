@@ -1,6 +1,6 @@
 const { klona } = require("klona");
 
-const HTTP_METHODS = ['get', 'post', 'put', 'patch', 'delete'];
+const HTTP_METHODS = ['get', 'post', 'put', 'patch', 'delete', 'head'];
 
 class Swagger {
 

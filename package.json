@@ -1,6 +1,6 @@
 {
   "name": "openapi-fuzzer-core",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A library to generate random requests based on open-api specifications.",
   "main": "./src/index.js",
   "scripts": {
