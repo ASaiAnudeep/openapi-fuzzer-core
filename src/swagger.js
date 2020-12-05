@@ -1,6 +1,7 @@
 const { klona } = require("klona");
 
 const HTTP_METHODS = ['get', 'post', 'put', 'patch', 'delete'];
+const HTTP_METHODS_SET = new Set(HTTP_METHODS);
 
 class Swagger {
 
@@ -32,16 +33,18 @@ class Swagger {
     for (const route of Object.keys(this.data.paths)) {
       const path = this.data.paths[route];
       for (const method of Object.keys(path)) {
-        this.specs.push({
-          name: 'PATH',
-          request: {
-            method,
-            path: `${this.basePath}${route}/INVALID/PATH`
-          },
-          expect: {
-            status: [404]
-          }
-        });
+        if (HTTP_METHODS_SET.has(method)) {
+          this.specs.push({
+            name: 'PATH',
+            request: {
+              method,
+              path: `${this.basePath}${route}/INVALID/PATH`
+            },
+            expect: {
+              status: [404]
+            }
+          });
+        }
       }
     }
   }
@@ -70,12 +73,14 @@ class Swagger {
     for (const route of Object.keys(this.data.paths)) {
       const path = this.data.paths[route];
       for (const method of Object.keys(path)) {
-        const info = path[method];
-        const parameters = info.parameters;
-        if (parameters && parameters.length > 0) {
-          this.fuzzPathParams(route, method, parameters);
-          this.fuzzQueryParams(route, method, parameters);
-          this.fuzzBodyParams(route, method, parameters);
+        if (HTTP_METHODS_SET.has(method)) {
+          const info = path[method];
+          const parameters = info.parameters;
+          if (parameters && parameters.length > 0) {
+            this.fuzzPathParams(route, method, parameters);
+            this.fuzzQueryParams(route, method, parameters);
+            this.fuzzBodyParams(route, method, parameters);
+          }
         }
       }
     }
