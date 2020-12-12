@@ -992,6 +992,7 @@
         },
         "shipDate": {
           "type": "string",
+          "minLength": 2,
           "format": "date-time"
         },
         "status": {

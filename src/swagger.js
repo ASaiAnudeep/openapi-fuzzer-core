@@ -201,10 +201,14 @@ class Swagger {
   }
 
   fuzzStringParam(parameter, nonPrimitives) {
+    let values = [];
     if (nonPrimitives) {
-      return [10, true, {}, null, []];
+      values = values.concat([10, true, {}, null, []]);
     }
-    return [];
+    if (parameter.minLength > 0) {
+      values.push('');
+    }
+    return values;
   }
 
   fuzzBooleanParam(parameter, nonPrimitives) {
